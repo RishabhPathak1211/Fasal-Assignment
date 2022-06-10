@@ -17,6 +17,7 @@ const register = async (req, res, next) => {
         const salt = await bcrypt.genSalt(10);
         user.password = await bcrypt.hash(user.password, salt);
         const newUser = await user.save();
+        // req.session.userID = newUser._id;
         const tokenSecret = process.env.TOKEN_SECRET;
         const token = jwt.sign({ id: newUser._id }, tokenSecret);
         return res.redirect(`/home?token=${token}`)
