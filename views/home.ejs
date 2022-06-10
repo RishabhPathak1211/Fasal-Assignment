@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1><%= user.username %></h1>
+    <h1><%= user.email %></h1>
+    <form action="/search?">
+        <label for="search">Search Movie</label>
+        <input type="text" name="search" id="search">
+        <input type="hidden" name="token" value="<%= token %>">
+        <button>Search</button>
+    </form>
+
+    <% if (results) { %>
+        <a href="/home?token=<%= token %>">Go To Home</a>
+        <h1>Results</h1>
+        <% for (let result of results) { %>
+            <h3>Title: <%= result.Title %></h3>
+            <h3>Year: <%= result.Year %></h3>
+            <h3>Type: <%= result.Type %></h3>
+            <h3>Poster:</h3>
+            <img src="<%= result.Poster %>" alt="" srcset="">
+        <% } %>
+    <% } %>
+
+    <% if (error) { %>
+        <h3><%= error %></h3>
+    <% } %>
+
+    <script>
+        var token = <%= token %>;
+        localStorage.setItem('token', token);
+    </script>
+</body>
+
+</html>
