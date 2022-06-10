@@ -11,22 +11,23 @@
     <h1><%= user.username %></h1>
     <h1><%= user.email %></h1>
 
+    <a href="/user/logout">Logout</a>
+
     <h1>Playlists</h1>
     <% for (let playlist of userPlaylists) { %>
-        <a href="/playlist/<%= playlist._id %>?token=<%= token %>"><%= playlist.name %></a>
+        <a href="/playlist/<%= playlist._id %>"><%= playlist.name %></a>
     <% } %>
 
-    <a href="/playlist?token=<%= token %>">Create New Playlist</a>
+    <a href="/playlist">Create New Playlist</a>
 
     <form action="/search?">
         <label for="search">Search Movie</label>
         <input type="text" name="search" id="search">
-        <input type="hidden" name="token" value="<%= token %>">
         <button>Search</button>
     </form>
 
     <% if (results) { %>
-        <a href="/home?token=<%= token %>">Go To Home</a>
+        <a href="/home">Go To Home</a>
         <h1>Results</h1>
         <% for (let result of results) { %>
             <h3>Title: <%= result.Title %></h3>
@@ -34,7 +35,7 @@
             <h3>Type: <%= result.Type %></h3>
             <h3>Poster:</h3>
             <img src="<%= result.Poster %>" alt="" srcset="">
-            <form action="/playlist?token=<%= token %>&_method=PUT" method="post">
+            <form action="/playlist?_method=PUT" method="post">
                 <select name="playlistId" id="playlist">
                     <% for (let playlist of userPlaylists) { %>
                         <option value="<%= playlist._id %>"><%= playlist.name %></option>
@@ -50,9 +51,6 @@
         <h3><%= error %></h3>
     <% } %>
 
-    <!-- <script>
-        document.getElementById('addBtn').onclick = e => e.preventDefault();
-    </script> -->
 </body>
 
 </html>

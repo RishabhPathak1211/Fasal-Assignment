@@ -1,5 +1,4 @@
 const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
 const userModel = require('../models/user');
 const ExpressError = require('../utils/ExpressError');
 
@@ -17,10 +16,8 @@ const register = async (req, res, next) => {
         const salt = await bcrypt.genSalt(10);
         user.password = await bcrypt.hash(user.password, salt);
         const newUser = await user.save();
-        // req.session.userID = newUser._id;
-        const tokenSecret = process.env.TOKEN_SECRET;
-        const token = jwt.sign({ id: newUser._id }, tokenSecret);
-        return res.redirect(`/home?token=${token}`)
+        req.session.userID = newUser._id;
+        return res.redirect('/home')
     } catch (err) {
         console.log(err);
         return next(new ExpressError());
@@ -35,9 +32,8 @@ const login = async (req, res, next) => {
         if (!user) return next(new ExpressError('User not found', 401));
         const validPass = await bcrypt.compare(password, user.password);
         if (validPass) {
-            const tokenSecret = process.env.TOKEN_SECRET;
-            const token = jwt.sign({ id: user._id }, tokenSecret);
-            return res.redirect(`/home?token=${token}`);
+            req.session.userID = user._id
+            return res.redirect('/home');
         } else return next(new ExpressError('Invalid Password', 401));
     } catch (err) {
         console.log(err);
@@ -50,4 +46,9 @@ module.exports.handleAuth = async (req, res, next) => {
     if (action === 'login') await login(req, res, next);
     else if (action === 'register') await register(req, res, next);
     else return next(new Error('Bad Request', 400));
+}
+
+module.exports.logout = (req, res, next) => {
+    req.session.destroy();
+    res.redirect('/');
 }

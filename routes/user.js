@@ -7,4 +7,6 @@ router.route('/auth')
 .get(userControllers.renderAuth)
 .post(userControllers.handleAuth);
 
+router.get('/logout', userControllers.logout);
+
 module.exports = router;

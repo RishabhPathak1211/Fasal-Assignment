@@ -7,13 +7,13 @@
     <title>Document</title>
 </head>
 <body>
-    <a href="/home?token=<%= token %>">Go to home</a>
+    <a href="/home">Go to home</a>
     <br>
     <% for (let movie of movies) { %>
         <img src="<%= movie.Poster %>" alt="" srcset="">
         <h1>Title: <%= movie.Title %></h1>
         <p>Plot: <%= movie.Plot %></p>
-        <form action="/playlist?token=<%= token %>&_method=DELETE" method="post">
+        <form action="/playlist?_method=DELETE" method="post">
             <input type="text" name="playlistId" id="playlistId" hidden value="<%= playlistId %>">
             <input type="text" name="movieId" id="movieId" hidden value="<%= movie.imdbID %>">
             <button>Remove from playlist</button>
