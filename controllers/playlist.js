@@ -39,7 +39,7 @@ module.exports.viewPlaylist = async (req, res, next) => {
             });
             movies.push(movie.data);
         }
-        return res.render('playlist', { movies, playlistId: playlist._id });
+        return res.render('playlist', { movies, playlistId: playlist._id, name: playlist.name });
     } catch (err) {
         console.log(err);
         return next(new ExpressError());

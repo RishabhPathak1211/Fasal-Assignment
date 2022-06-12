@@ -4,21 +4,31 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title><%= name %></title>
+
+    <link rel="stylesheet" href="/stylesheets/playlist.css">
 </head>
 <body>
-    <a href="/home">Go to home</a>
-    <br>
-    <% for (let movie of movies) { %>
-        <img src="<%= movie.Poster %>" alt="" srcset="">
-        <h1>Title: <%= movie.Title %></h1>
-        <p>Plot: <%= movie.Plot %></p>
-        <form action="/playlist?_method=DELETE" method="post">
-            <input type="text" name="playlistId" id="playlistId" hidden value="<%= playlistId %>">
-            <input type="text" name="movieId" id="movieId" hidden value="<%= movie.imdbID %>">
-            <button>Remove from playlist</button>
-        </form>
-        <br>
-    <% } %>
+    <div class="header"></div>
+    <h1 class="head">Displaying movies in <%= name %></h1>
+    <div class="grid-container">
+        <% for (let movie of movies) { %>
+            <div class="result">
+                <img src="<%= movie.Poster %>" alt="" srcset="">
+                <h1><%= movie.Title %>
+                </h1>
+                <p><%= movie.Plot %></p>
+                <p><%= movie.Genre %></p>
+                <p>Released on <%= movie.Released %></p>
+                <p>Runtime: <%= movie.Runtime %></p>
+                <form action="/playlist?_method=DELETE" method="post">
+                    <input type="text" name="playlistId" id="playlistId" hidden value="<%= playlistId %>">
+                    <input type="text" name="movieId" id="movieId" hidden value="<%= movie.imdbID %>">
+                    <button>Remove from playlist</button>
+                </form>
+                <br>
+            </div>
+        <% } %>
+    </div>
 </body>
 </html>

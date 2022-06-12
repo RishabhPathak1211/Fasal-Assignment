@@ -1,0 +1,177 @@
+body {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    margin: 0;
+}
+
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #64b692;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 40px;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+    text-decoration: none;
+    color: black;
+    font-weight: 1000;
+}
+
+.sidenav .closebtn:hover {
+    color: bisque;
+}
+
+
+.img {
+    background-image: url('../imgs/usericontrans.png');
+    height: 200px;
+    width: 50%;
+    min-width: 200px;
+    background-size: 100% 100%;
+    margin-bottom: 10px;
+}
+
+.profile {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid bisque;
+    padding-bottom: 10px;
+}
+
+.profile h2 {
+    margin: 10px;
+    font-size: 30px;
+}
+
+.profile a {
+    background-color: red;
+    color: white;
+    padding: 1em 1.5em;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.profile a:hover {
+    background-color: #555;
+}
+
+.profile a:active {
+    background-color: black;
+}
+
+#create {
+    display: block;
+    padding: 0.5rem 1rem;
+    color: white;
+    text-decoration: none;
+    background-color: rgb(86, 128, 226);
+    font-size: 2rem;
+}
+
+#create:hover {
+    background-color: rgb(29, 70, 167);
+}
+
+.playlist-links {
+    display: flex;
+    flex-direction: column;
+}
+
+.playlist-links a {
+    padding: 4px 8px 8px 20px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+    color: white;
+}
+
+.playlist-links a:hover {
+    color: #f1f1f1;
+    background-color: cadetblue;
+}
+
+.nav {
+    background: #64b692;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    height: 70px;
+    padding: 0 100px;
+}
+
+.nav .searchbar {
+    position: relative;
+}
+
+.nav .searchbar input[type="text"] {
+    border: 0;
+    padding: 0;
+    width: 0px;
+    height: 35px;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+}
+
+.nav .searchbar .icon {
+    display: flex;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 35px;
+    height: 100%;
+    background: none;
+    border-radius: 3px;
+    color: #fff;
+    transition: all 0.5s 0.3s ease;
+}
+
+.nav .searchbar .icon i {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+}
+
+.nav .searchbar .icon.active {
+    background: #062333;
+    transition: all 0.3s ease;
+}
+
+.nav .searchbar input[type="text"].active {
+    width: 500px;
+    padding: 0 10px;
+    transition: all 0.5s 0.2s ease;
+}
+
+.results .grid-container {
+    max-width: 80%;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5%;
+}
+
+.results h1 {
+    max-width: fit-content;
+    margin: 100px auto 40px auto;
+}
+
+.result {
+    text-align: center;
+}
